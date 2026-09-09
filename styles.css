@@ -1,0 +1,236 @@
+/* ==========================================================================
+   1. Variables & Reset Global
+   ========================================================================== */
+:root {
+  --primary-color: #0B2545;       /* Azul Marino Profundo (Confianza y Seriedad) */
+  --secondary-color: #139A43;     /* Verde Acento / WhatsApp (Crecimiento y Acción) */
+  --accent-blue: #134074;         /* Azul Medio para Hovers */
+  --bg-light: #F8F9FA;            /* Gris Muy Claro para Fondos */
+  --text-dark: #1D2A44;           /* Texto Principal */
+  --text-muted: #5C6B73;          /* Texto Secundario */
+  --white: #FFFFFF;
+  --font-main: 'Montserrat', sans-serif;
+  --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+  --radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. Navegación / Header
+   ========================================================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: var(--white);
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--secondary-color);
+}
+
+.btn-nav {
+  background-color: var(--primary-color);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: var(--radius);
+  transition: background-color 0.3s ease !important;
+}
+
+.btn-nav:hover {
+  background-color: var(--accent-blue) !important;
+}
+
+/* ==========================================================================
+   3. Hero / Banner Principal
+   ========================================================================== */
+.hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-blue) 100%);
+  color: var(--white);
+  padding: 80px 5%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  margin-bottom: 30px;
+  color: #E0E6ED;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  font-weight: 700;
+  padding: 14px 28px;
+  text-decoration: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(19, 154, 67, 0.3);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0f8037;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   4. Sección de Servicios
+   ========================================================================== */
+.services-section {
+  padding: 80px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.services-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--secondary-color);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  border-top: 4px solid var(--primary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-top-color: var(--secondary-color);
+}
+
+.service-card h3 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   5. Footer / Pie de Página
+   ========================================================================== */
+footer {
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 25px 5%;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   6. Diseño Adaptativo (Responsive)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
