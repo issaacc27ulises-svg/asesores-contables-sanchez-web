@@ -758,3 +758,88 @@ html {
     gap: 40px;
   }
 }
+
+/* Sección de Preguntas Frecuentes */
+.faq-section {
+  padding: 80px 5%;
+  background-color: var(--bg-light, #f8fafc);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.faq-header h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 10px;
+}
+
+.faq-header p {
+  color: var(--text-muted, #64748b);
+  font-size: 1.05rem;
+}
+
+/* Lista de Acordeones */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq-item {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.faq-item[open] {
+  border-color: var(--secondary-color, #2563eb);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+  padding: 20px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color, #1e293b);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none; /* Oculta la flecha por defecto del navegador */
+}
+
+.faq-question::-webkit-details-marker {
+  display: none; /* Oculta la flecha por defecto en Safari */
+}
+
+.faq-icon {
+  font-size: 1.4rem;
+  color: var(--secondary-color, #2563eb);
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+
+/* Cambiar el ícono '+' a '×' o rotar al abrir */
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 25px 20px 25px;
+  color: var(--text-muted, #64748b);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  border-top: 1px solid #f1f5f9;
+  margin-top: 5px;
+  padding-top: 15px;
+}
