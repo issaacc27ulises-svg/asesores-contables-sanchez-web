@@ -630,3 +630,131 @@ html {
     display: none;
   }
 }
+
+/* Sección Sobre Nosotros */
+.about-section {
+  padding: 80px 5%;
+  background-color: var(--bg-light, #f8fafc);
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.section-tag {
+  display: inline-block;
+  color: var(--secondary-color, #2563eb);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.about-content h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+
+.about-description {
+  color: var(--text-muted, #64748b);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.about-highlights {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.highlight-icon {
+  font-size: 1.8rem;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.highlight-item h4 {
+  font-size: 1.1rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 4px;
+}
+
+.highlight-item p {
+  color: var(--text-muted, #64748b);
+  font-size: 0.95rem;
+}
+
+/* Tarjeta Destacada */
+.about-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.about-badge {
+  background-color: #dbeafe;
+  color: #1e40af;
+  padding: 12px 20px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.badge-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.badge-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.about-card h3 {
+  font-size: 1.4rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 20px;
+}
+
+.about-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.about-card li {
+  font-size: 0.95rem;
+  color: #334155;
+  margin-bottom: 12px;
+}
+
+/* Adaptación para pantallas móviles */
+@media (max-width: 992px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
