@@ -843,3 +843,48 @@ html {
   margin-top: 5px;
   padding-top: 15px;
 }
+
+/* Prevenir desbordamientos e incluir padding/borders en los anchos */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hacer que imágenes y vectores sean dinámicos */
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Evitar desplazamientos horizontales no deseados */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Adaptaciones para teléfonos móviles (menos de 768px) */
+@media (max-width: 768px) {
+  /* Ajustar tamaños de fuente en títulos */
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+
+  /* Reducir los rellenos laterales en secciones */
+  .services-section, 
+  .pricing-section, 
+  .about-section, 
+  .contact-section, 
+  .faq-section {
+    padding: 40px 15px;
+  }
+
+  /* Transformar rejillas de varias columnas a 1 sola columna */
+  .services-grid, 
+  .pricing-grid, 
+  .about-container, 
+  .contact-container {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+}
