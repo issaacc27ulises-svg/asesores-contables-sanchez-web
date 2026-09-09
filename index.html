@@ -365,5 +365,78 @@
   </svg>
 </a>
 
+<!-- Botón Flotante y Ventana de Chatbot de Dudas -->
+<div class="chatbot-wrapper">
+  <!-- Botón flotante del Chatbot (Esquina inferior izquierda) -->
+  <button id="chatbot-toggle-btn" class="chatbot-btn" aria-label="Abrir asistente de dudas">
+    💬 <span class="chatbot-badge">Dudas</span>
+  </button>
+
+  <!-- Ventana desplegable del Chatbot -->
+  <div id="chatbot-box" class="chatbot-box hidden">
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        <span>🤖 Asistente Virtual</span>
+        <small>Asesores Contables Sánchez</small>
+      </div>
+      <button id="chatbot-close-btn" class="close-btn">&times;</button>
+    </div>
+
+    <div id="chatbot-messages" class="chatbot-messages">
+      <div class="chat-message bot">
+        ¡Hola! 👋 Bienvenido a Asesores Contables Sánchez. ¿En qué te puedo ayudar hoy? Selecciona una opción:
+      </div>
+    </div>
+
+    <!-- Menú de Opciones Rápidas -->
+    <div id="chatbot-options" class="chatbot-options">
+      <button class="chat-opt-btn" onclick="sendChatOption('ubicacion')">📍 Ubicación y Horarios</button>
+      <button class="chat-opt-btn" onclick="sendChatOption('resico')">🚀 ¿Qué es RESICO?</button>
+      <button class="chat-opt-btn" onclick="sendChatOption('citas')">📅 Agendar una Consulta</button>
+      <button class="chat-opt-btn" onclick="sendChatOption('humano')">👤 Hablar con un Contador</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('chatbot-toggle-btn');
+  const closeBtn = document.getElementById('chatbot-close-btn');
+  const chatBox = document.getElementById('chatbot-box');
+  const chatMessages = document.getElementById('chatbot-messages');
+
+  // Abrir / Cerrar Chat
+  toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+  closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
+
+  // Respuestas dinámicas del Asistente
+  function sendChatOption(option) {
+    let userText = "";
+    let botResponse = "";
+
+    if (option === 'ubicacion') {
+      userText = "📍 Ubicación y Horarios";
+      botResponse = "Nos encontramos en Manzanillo, Colima. Nuestro horario de atención es de Lunes a Viernes de 9:00 AM a 6:00 PM.";
+    } else if (option === 'resico') {
+      userText = "🚀 ¿Qué es RESICO?";
+      botResponse = "Es el Régimen Simplificado de Confianza del SAT. Te permite pagar tasas de ISR muy bajas (del 1% al 2.5%) si eres emprendedor o pequeño negocio.";
+    } else if (option === 'citas') {
+      userText = "📅 Agendar una Consulta";
+      botResponse = "¡Excelente! Puedes agendar un diagnóstico fiscal sin compromiso enviándonos un mensaje directo por WhatsApp.";
+    } else if (option === 'humano') {
+      userText = "👤 Hablar con un Contador";
+      botResponse = "Te conectamos de inmediato con un asesor. Haz clic en el siguiente enlace: <br><br><a href='https://wa.me/523140000000' target='_blank' style='color:#2563eb; font-weight:bold;'>👉 Chatear en WhatsApp</a>";
+    }
+
+    // Mostrar mensaje del usuario
+    chatMessages.innerHTML += `<div class="chat-message user">${userText}</div>`;
+    
+    // Mostrar respuesta del bot tras pequeño retraso simulado
+    setTimeout(() => {
+      chatMessages.innerHTML += `<div class="chat-message bot">${botResponse}</div>`;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 400);
+  }
+</script>
+
 </body>
 </html>
