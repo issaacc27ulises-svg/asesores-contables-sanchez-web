@@ -504,3 +504,107 @@ footer {
     margin: 0 auto;
   }
 }
+
+/* Desplazamiento suave para toda la página */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Evita que la barra tape el inicio de la sección */
+}
+
+/* Estilos de la Barra Superior */
+.main-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo y Nombre */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.header-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary-color, #1e293b);
+}
+
+/* Navegación */
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--secondary-color, #2563eb);
+}
+
+/* Botón Destacado del Header */
+.header-btn {
+  background-color: var(--secondary-color, #2563eb);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.header-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Adaptación Móvil */
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .brand-name {
+    display: none; /* Oculta el texto largo en pantallas pequeñas para ahorrar espacio */
+  }
+
+  .main-nav ul {
+    gap: 15px;
+  }
+
+  .header-btn {
+    display: none;
+  }
+}
