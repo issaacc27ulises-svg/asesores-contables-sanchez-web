@@ -353,3 +353,154 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* Sección de Planes / Paquetes */
+.pricing-section {
+  padding: 80px 5%;
+  background-color: var(--bg-light, #f8fafc);
+}
+
+.pricing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.pricing-header h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 10px;
+}
+
+.pricing-header p {
+  color: var(--text-muted, #64748b);
+  font-size: 1.1rem;
+}
+
+/* Grid de Tarjetas */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  align-items: stretch;
+}
+
+.pricing-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Tarjeta Destacada */
+.pricing-card.featured {
+  border: 2px solid var(--secondary-color, #2563eb);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+}
+
+.plan-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: #e2e8f0;
+  color: #475569;
+  margin-bottom: 15px;
+}
+
+.plan-badge.popular {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 10px;
+}
+
+.plan-description {
+  color: var(--text-muted, #64748b);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  min-height: 45px;
+}
+
+.plan-price {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.price-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-color, #1e293b);
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  flex-grow: 1;
+}
+
+.plan-features li {
+  font-size: 0.95rem;
+  color: #334155;
+  margin-bottom: 12px;
+}
+
+/* Botones */
+.btn-primary, .btn-secondary {
+  display: block;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color, #2563eb);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+
+/* Responsivo para celulares y tabletas */
+@media (max-width: 992px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}
