@@ -143,62 +143,84 @@ nav a:hover {
 }
 
 /* ==========================================================================
-   4. Sección de Servicios
-   ========================================================================== */
+   4. Sección de Servicios 
+   ==========================================================================*/
+
 .services-section {
   padding: 80px 5%;
+  background-color: #ffffff;
+}
+
+.services-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.services-section h2 {
+.services-header {
   text-align: center;
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 40px;
-  position: relative;
+  margin-bottom: 50px;
 }
 
-.services-section h2::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background-color: var(--secondary-color);
-  margin: 10px auto 0;
-  border-radius: 2px;
+.services-header h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 10px;
 }
 
+.services-header p {
+  color: var(--text-muted, #64748b);
+  font-size: 1.1rem;
+}
+
+/* Grid de Servicios (3 columnas) */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
 .service-card {
-  background-color: var(--white);
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
-  border-top: 4px solid var(--primary-color);
+  background-color: var(--bg-light, #f8fafc);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px 25px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
-  border-top-color: var(--secondary-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-color: var(--secondary-color, #2563eb);
 }
 
-.service-card h3 {
-  font-size: 1.3rem;
-  color: var(--primary-color);
+.service-icon {
+  font-size: 2.2rem;
   margin-bottom: 15px;
 }
 
+.service-card h3 {
+  font-size: 1.25rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 12px;
+}
+
 .service-card p {
-  color: var(--text-muted);
+  color: var(--text-muted, #64748b);
   font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Adaptación para pantallas medianas y móviles */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ==========================================================================
