@@ -118,6 +118,43 @@
   </div>
 </section>
 
+<!-- Sección Calculadora RESICO -->
+<section id="calculadora" class="calc-section">
+  <div class="calc-container">
+    <div class="calc-header">
+      <h2>Calculadora Estimada de ISR (RESICO)</h2>
+      <p>Descubre cuánto pagarías de ISR mensual bajo el Régimen Simplificado de Confianza para Personas Físicas.</p>
+    </div>
+
+    <div class="calc-card">
+      <div class="calc-input-group">
+        <label for="ingresoMensual">Ingreso Mensual Estimado (sin IVA):</label>
+        <div class="input-prefix">
+          <span>$</span>
+          <input type="number" id="ingresoMensual" placeholder="Ej. 25000" min="0" oninput="calcularResico()">
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-box">
+          <span class="result-label">Tasa Aplicable SAT</span>
+          <span id="resTasa" class="result-value">0.00%</span>
+        </div>
+        <div class="result-box highlight">
+          <span class="result-label">Pago Estimado de ISR</span>
+          <span id="resISR" class="result-value">$0.00 MXN</span>
+        </div>
+      </div>
+
+      <p class="calc-note">*Cálculo estimado para Personas Físicas en RESICO. No incluye retenciones ni IVA.</p>
+
+      <a id="btnWaCalc" href="https://wa.me/523140000000?text=Hola,%20utilicé%20la%20calculadora%20RESICO%20en%20su%20página%20y%20me%20gustaría%20agendar%20una%20asesoría" target="_blank" rel="noopener noreferrer" class="btn-primary btn-calc">
+        Solicitar Estrategia Fiscal RESICO
+      </a>
+    </div>
+  </div>
+</section>
+
   <!-- Sección de Servicios Ampliada -->
 <section id="servicios" class="services-section">
   <div class="services-container">
@@ -464,6 +501,53 @@
       chatMessages.innerHTML += `<div class="chat-message bot">${botResponse}</div>`;
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }, 400);
+  }
+</script>
+
+<script>
+  function calcularResico() {
+    const ingresoInput = document.getElementById('ingresoMensual').value;
+    const ingreso = parseFloat(ingresoInput);
+    
+    const elemTasa = document.getElementById('resTasa');
+    const elemISR = document.getElementById('resISR');
+    const btnWa = document.getElementById('btnWaCalc');
+
+    if (isNaN(ingreso) || ingreso <= 0) {
+      elemTasa.textContent = "0.00%";
+      elemISR.textContent = "$0.00 MXN";
+      return;
+    }
+
+    let tasa = 0;
+
+    // Tabla Oficial Mensual RESICO Personas Físicas
+    if (ingreso <= 25000) {
+      tasa = 0.01; // 1.00%
+    } else if (ingreso <= 50000) {
+      tasa = 0.011; // 1.10%
+    } else if (ingreso <= 83333.33) {
+      tasa = 0.015; // 1.50%
+    } else if (ingreso <= 208333.33) {
+      tasa = 0.02; // 2.00%
+    } else if (ingreso <= 291666.67) {
+      tasa = 0.025; // 2.50%
+    } else {
+      elemTasa.textContent = "Límite excedido";
+      elemISR.textContent = "Requiere evaluación";
+      return;
+    }
+
+    const isrCalculado = ingreso * tasa;
+    const porcentajeTexto = (tasa * 100).toFixed(2) + "%";
+    const isrFormateado = "$" + isrCalculado.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " MXN";
+
+    elemTasa.textContent = porcentajeTexto;
+    elemISR.textContent = isrFormateado;
+
+    // Actualizar mensaje personalizado para WhatsApp
+    const mensajeWa = `Hola, utilicé la calculadora RESICO en su web con un ingreso mensual de $${ingreso.toLocaleString('es-MX')} MXN y un ISR estimado de ${isrFormateado}. Me gustaría agendar una asesoría.`;
+    btnWa.href = `https://wa.me/523141707265?text=${encodeURIComponent(mensajeWa)}`;
   }
 </script>
 

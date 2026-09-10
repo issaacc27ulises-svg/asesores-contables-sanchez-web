@@ -1115,3 +1115,137 @@ body {
 @media (max-width: 768px) {
   .footer-container { grid-template-columns: 1fr; }
 }
+
+/* Estilos de la Calculadora RESICO */
+.calc-section {
+  padding: 80px 5%;
+  background-color: var(--bg-light, #f8fafc);
+}
+
+.calc-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.calc-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.calc-header h2 {
+  font-size: 2rem;
+  color: var(--primary-color, #1e293b);
+  margin-bottom: 10px;
+}
+
+.calc-header p {
+  color: var(--text-muted, #64748b);
+  font-size: 1.05rem;
+}
+
+.calc-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.calc-input-group {
+  margin-bottom: 25px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.input-prefix {
+  display: flex;
+  align-items: center;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0 12px;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease;
+}
+
+.input-prefix:focus-within {
+  border-color: var(--secondary-color, #2563eb);
+}
+
+.input-prefix span {
+  font-weight: 700;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.input-prefix input {
+  width: 100%;
+  border: none;
+  padding: 12px 8px;
+  font-size: 1.1rem;
+  outline: none;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.calc-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.result-box {
+  background-color: #f1f5f9;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.result-box.highlight {
+  background-color: #dbeafe;
+  border: 1px solid #bfdbfe;
+}
+
+.result-label {
+  display: block;
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.result-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.result-box.highlight .result-value {
+  color: #1e40af;
+}
+
+.calc-note {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.btn-calc {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 14px;
+}
+
+@media (max-width: 600px) {
+  .calc-results {
+    grid-template-columns: 1fr;
+  }
+}
