@@ -6,10 +6,10 @@ from reportlab.platypus import (
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-def crear_pdf_juvenil_profesional():
+def crear_pdf_completo():
     pdf_filename = "Guia_SAT_2026_Asesores_Contables_Sanchez.pdf"
     
-    # Documento con márgenes optimizados para 2 páginas exactas
+    # Documento ajustado para 2 páginas exactas
     doc = SimpleDocTemplate(
         pdf_filename,
         pagesize=letter,
@@ -21,55 +21,48 @@ def crear_pdf_juvenil_profesional():
 
     styles = getSampleStyleSheet()
     
-    # Paleta Fresca y Juvenil: Azules, Verdes y Blancos
-    c_navy = colors.HexColor("#0f172a")       # Azul Oscuro Profundo (Estructura)
-    c_blue_bright = colors.HexColor("#2563eb") # Azul Eléctrico (Acentos)
-    c_green_emerald = colors.HexColor("#059669")# Verde Esmeralda (Destacados y Éxito)
-    c_green_light = colors.HexColor("#ecfdf5")  # Verde Menta Suave (Fondos de Tablas/Llamados)
-    c_bg_light = colors.HexColor("#f8fafc")     # Gris/Blanco Suave
-    c_card_border = colors.HexColor("#cbd5e1")  # Bordes sutiles
-    c_text_dark = colors.HexColor("#1e293b")    # Texto principal
+    # Paleta de Colores: Verde Principal y Azul Acento
+    c_green_dark = colors.HexColor("#064e3b")    # Verde Bosque Oscuro (Estructura Principal / Header)
+    c_green_emerald = colors.HexColor("#059669") # Verde Esmeralda (Títulos y Subsecciones)
+    c_blue_bright = colors.HexColor("#2563eb")   # Azul Eléctrico (Acentos y CTA)
+    c_blue_light = colors.HexColor("#eff6ff")    # Azul Cielo Suave (Fondos de Tarjetas / Filas)
+    c_card_border = colors.HexColor("#cbd5e1")   # Bordes
+    c_text_dark = colors.HexColor("#1e293b")     # Texto principal
     c_white = colors.white
 
     # Estilos Tipográficos
     title_style = ParagraphStyle(
         'HeaderTitle', parent=styles['Normal'],
-        fontName='Helvetica-Bold', fontSize=15, textColor=c_white,
-        leading=18
-    )
-
-    subtitle_style = ParagraphStyle(
-        'HeaderSubtitle', parent=styles['Normal'],
-        fontName='Helvetica', fontSize=8.5, textColor=colors.HexColor("#a7f3d0"), # Verde menta claro
-        leading=11
+        fontName='Helvetica-Bold', fontSize=14, textColor=c_white,
+        leading=17
     )
 
     h2_style = ParagraphStyle(
         'SectionH2', parent=styles['Normal'],
-        fontName='Helvetica-Bold', fontSize=12, textColor=c_navy,
-        spaceBefore=10, spaceAfter=4, leading=15
+        fontName='Helvetica-Bold', fontSize=11, textColor=c_green_dark,
+        spaceBefore=8, spaceAfter=3, leading=14
     )
 
     body_style = ParagraphStyle(
         'BodyDark', parent=styles['Normal'],
-        fontName='Helvetica', fontSize=8.5, textColor=c_text_dark,
-        leading=12.5, spaceAfter=4
+        fontName='Helvetica', fontSize=8, textColor=c_text_dark,
+        leading=11.5, spaceAfter=3
     )
 
     bullet_style = ParagraphStyle(
         'BulletText', parent=body_style,
-        leftIndent=10, spaceAfter=3
+        leftIndent=8, spaceAfter=2.5
     )
 
     badge_style = ParagraphStyle(
         'BadgeText', parent=styles['Normal'],
-        fontName='Helvetica-Bold', fontSize=8, textColor=colors.HexColor("#6ee7b7"), # Verde fluorescente suave
+        fontName='Helvetica-Bold', fontSize=8, textColor=colors.HexColor("#93c5fd"),
         alignment=2
     )
 
     story = []
 
-    # --- ENCABEZADO CON LOGO AMPLIADO ---
+    # --- ENCABEZADO PRINCIPAL ---
     logo_path = "logo.png"
     if not os.path.exists(logo_path):
         for alt_ext in ["logo.jpg", "logo.jpeg", "logo.png", "logo.svg"]:
@@ -77,77 +70,75 @@ def crear_pdf_juvenil_profesional():
                 logo_path = alt_ext
                 break
 
-    # Se ajusta el logo a un tamaño visible de 90px de ancho
     if os.path.exists(logo_path):
         logo_img = Image(logo_path, width=90, height=70)
         header_left = Table([
-            [logo_img, Paragraph("<b>ASESORES CONTABLES SÁNCHEZ</b><br/><font color='#a7f3d0'>Soluciones Contables & Fiscales</font>", title_style)]
+            [logo_img, Paragraph("<b>ASESORES CONTABLES SÁNCHEZ</b><br/><font color='#6ee7b7'>Soluciones Contables & Fiscales</font>", title_style)]
         ], colWidths=[98, 250])
         header_left.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
             ('PADDING', (0,0), (-1,-1), 0)
         ]))
     else:
-        header_left = Paragraph("<b>ASESORES CONTABLES SÁNCHEZ</b><br/><font color='#a7f3d0'>Soluciones Contables & Fiscales</font>", title_style)
+        header_left = Paragraph("<b>ASESORES CONTABLES SÁNCHEZ</b><br/><font color='#6ee7b7'>Soluciones Contables & Fiscales</font>", title_style)
 
-    header_right = Paragraph("<b>CHECKLIST SAT 2026</b><br/><font color='#60a5fa'>Guía para Emprendedores</font>", badge_style)
+    header_right = Paragraph("<b>CHECKLIST SAT 2026</b><br/><font color='#93c5fd'>Guía para Emprendedores</font>", badge_style)
 
     header_table = Table([[header_left, header_right]], colWidths=[355, 185])
     header_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), c_navy),
+        ('BACKGROUND', (0,0), (-1,-1), c_green_dark),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('PADDING', (0,0), (-1,-1), 10),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 10),
+        ('PADDING', (0,0), (-1,-1), 8),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 8),
     ]))
     
     # --- PÁGINA 1 ---
     story.append(header_table)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 8))
 
-    # Banner Introductorio (Estilo Tarjeta Menta)
+    # Banner Introductorio
     intro_box = [
         [Paragraph(
             "<b>💡 Guía Práctica de Regularización Fiscal:</b> Preparada por <b>Asesores Contables Sánchez</b> en Manzanillo para apoyar a emprendedores y pymes. Cumple con tus trámites indispensables ante el SAT sin complicaciones.",
-            ParagraphStyle('IntroText', parent=body_style, textColor=colors.HexColor("#065f46"), fontSize=8.5, leading=12)
+            ParagraphStyle('IntroText', parent=body_style, textColor=colors.HexColor("#1e40af"), fontSize=8, leading=11)
         )]
     ]
     intro_table = Table(intro_box, colWidths=[540])
     intro_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), c_green_light),
-        ('BORDER', (0,0), (-1,-1), 1, c_green_emerald),
-        ('PADDING', (0,0), (-1,-1), 8),
+        ('BACKGROUND', (0,0), (-1,-1), c_blue_light),
+        ('BORDER', (0,0), (-1,-1), 1, c_blue_bright),
+        ('PADDING', (0,0), (-1,-1), 6),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
     story.append(intro_table)
-    story.append(Spacer(1, 8))
+    story.append(Spacer(1, 6))
 
-    # Módulo 1: e.firma
+    # Módulo 1: e.firma Primera Vez y Renovación en Línea
     story.append(Paragraph("1. Trámite y Renovación de e.firma (Firma Electrónica)", h2_style))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=c_green_emerald, spaceBefore=2, spaceAfter=6))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=c_blue_bright, spaceBefore=2, spaceAfter=4))
     
     efirma_data = [
-        [Paragraph("<b>Requisito / Documento</b>", ParagraphStyle('TH1', parent=body_style, fontName='Helvetica-Bold', textColor=c_navy)), 
-         Paragraph("<b>Especificaciones Oficiales del SAT</b>", ParagraphStyle('TH2', parent=body_style, fontName='Helvetica-Bold', textColor=c_navy))],
-        [Paragraph("Identificación Oficial", body_style), Paragraph("INE o Pasaporte vigente (original para cotejo presencial).", body_style)],
-        [Paragraph("Comprobante de Domicilio", body_style), Paragraph("Máximo 3 meses de antigüedad (Luz, Agua, Estado de Cuenta). Coincidente con Domicilio Fiscal.", body_style)],
-        [Paragraph("Unidad USB Limpia", body_style), Paragraph("Para descarga directa de tus archivos confidenciales: <b>.KEY</b>, <b>.CER</b> y clave secreta.", body_style)],
-        [Paragraph("Buzón Tributario", body_style), Paragraph("Correo electrónico y número celular registrados y validados.", body_style)]
+        [Paragraph("<b>Requisito / Modalidad</b>", ParagraphStyle('TH1', parent=body_style, fontName='Helvetica-Bold', textColor=c_green_dark)), 
+         Paragraph("<b>Especificaciones y Procedimiento Paso a Paso</b>", ParagraphStyle('TH2', parent=body_style, fontName='Helvetica-Bold', textColor=c_green_dark))],
+        [Paragraph("Trámite Presencial (1ª Vez)", body_style), Paragraph("Cita en el SAT con INE o Pasaporte vigente, comprobante de domicilio (<3 meses) y USB limpia.", body_style)],
+        [Paragraph("Renovación con Certifica (Vigente)", body_style), Paragraph("<b>Si tu e.firma sigue vigente:</b><br/>1. Descarga el programa <b>Certifica</b> (versión 32/64 bits) desde el portal del SAT.<br/>2. Selecciona la opción <i>'Solicitud de Requerimiento de Renovación de Firma Electrónica'</i>.<br/>3. Adjunta tu certificado vigente (<b>.CER</b>) y genera tu archivo de requerimiento (<b>.REN</b>) y clave privada nueva (<b>.KEY</b>).<br/>4. Ingresa al portal del SAT en la sección <i>'CertiSAT Web'</i>, envía el archivo <b>.REN</b> y descarga tu nuevo certificado (<b>.CER</b>).", body_style)],
+        [Paragraph("Renovación con SAT ID (Vencida)", body_style), Paragraph("<b>Si venció hace menos de 1 año:</b> Ingresa a <i>satid.sat.gob.mx</i> o la app SAT ID, adjunta tu INE, graba un video de confirmación y tras la aprobación genera tu requerimiento con Certifica.", body_style)]
     ]
     efirma_table = Table(efirma_data, colWidths=[140, 400])
     efirma_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), c_green_light),
+        ('BACKGROUND', (0,0), (-1,0), c_blue_light),
         ('GRID', (0,0), (-1,-1), 0.5, c_card_border),
-        ('PADDING', (0,0), (-1,-1), 5),
+        ('PADDING', (0,0), (-1,-1), 4.5),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
     story.append(efirma_table)
-    story.append(Spacer(1, 8))
+    story.append(Spacer(1, 6))
 
     # Módulo 2: Facturación CFDI 4.0
     story.append(Paragraph("2. Requisitos para Facturación Electrónica (CFDI 4.0)", h2_style))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=c_blue_bright, spaceBefore=2, spaceAfter=6))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=c_green_emerald, spaceBefore=2, spaceAfter=4))
     story.append(Paragraph("• <b>Constancia de Situación Fiscal Actualizada:</b> Nombre completo/Razón Social, RFC, Régimen y Código Postal deben coincidir sin variaciones.", bullet_style))
-    story.append(Paragraph("• <b>Certificado de Sello Digital (CSD):</b> Archivo tramitado a partir de la e.firma necesario para emitir facturas en sistemas de cobro.", bullet_style))
+    story.append(Paragraph("• <b>Certificado de Sello Digital (CSD):</b> Archivo generado mediante el programa Certifica a partir de la e.firma para emitir facturas en sistemas de cobro.", bullet_style))
     story.append(Paragraph("• <b>Clave de Uso de CFDI:</b> Asignación precisa según la solicitud de tu cliente (<i>G03 - Gastos en general</i>, <i>CP01 - Pagos</i>, etc.).", bullet_style))
     story.append(Paragraph("• <b>Complemento de Pago:</b> Obligatorio en ventas a crédito o diferidas (PPD) al momento de recibir la transferencia.", bullet_style))
 
@@ -156,11 +147,11 @@ def crear_pdf_juvenil_profesional():
 
     # --- PÁGINA 2 ---
     story.append(header_table)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 8))
 
     # Módulo 3: RESICO Tabla
     story.append(Paragraph("3. Tablas del Régimen Simplificado de Confianza (RESICO 2026)", h2_style))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=c_green_emerald, spaceBefore=2, spaceAfter=6))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=c_blue_bright, spaceBefore=2, spaceAfter=4))
     story.append(Paragraph("Aprovecha tasas preferenciales de Impuesto sobre la Renta (ISR) para ingresos menores a $3.5 MDP anuales:", body_style))
 
     resico_tabla = [
@@ -175,47 +166,47 @@ def crear_pdf_juvenil_profesional():
     ]
     resico_table = Table(resico_tabla, colWidths=[190, 150, 200])
     resico_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), c_navy),
+        ('BACKGROUND', (0,0), (-1,0), c_green_dark),
         ('GRID', (0,0), (-1,-1), 0.5, c_card_border),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [c_white, c_green_light]),
-        ('PADDING', (0,0), (-1,-1), 5),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [c_white, c_blue_light]),
+        ('PADDING', (0,0), (-1,-1), 4.5),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
     story.append(resico_table)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 8))
 
     # Módulo 4: Errores Comunes
     story.append(Paragraph("4. Evita los 4 Errores Fiscales Más Comunes", h2_style))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=c_blue_bright, spaceBefore=2, spaceAfter=6))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=c_green_emerald, spaceBefore=2, spaceAfter=4))
     story.append(Paragraph("❌ <b>Omitir dos o más declaraciones consecutivas:</b> El SAT puede reclasificarte al Régimen de Actividad Empresarial con tasas de hasta el 35%.", bullet_style))
     story.append(Paragraph("❌ <b>Mezclar gastos personales con cuentas del negocio:</b> Todo gasto a deducir o acreditar requiere pago con tarjetas o transferencias del titular.", bullet_style))
     story.append(Paragraph("❌ <b>Ignorar las notificaciones del Buzón Tributario:</b> Los avisos surten efecto legal a los 3 días hábiles de su envío.", bullet_style))
     story.append(Paragraph("❌ <b>No facturar tus compras o suministros:</b> Sin CFDI pierdes la oportunidad de reducir cargos en tus declaraciones de IVA.", bullet_style))
-    story.append(Spacer(1, 12))
+    story.append(Spacer(1, 10))
 
-    # LLAMADO A LA ACCIÓN (CTA) EN COLOR VERDE ESMERALDA / BLANCO
+    # LLAMADO A LA ACCIÓN (CTA)
     cta_box = [
         [Paragraph(
-            "<font size=10 color='#ffffff'><b>¿QUIERES REVISAR TU ESTATUS DEL SAT SIN COSTO?</b></font><br/><br/>"
-            "<font size=8.5 color='#ecfdf5'>"
+            "<font size=9.5 color='#ffffff'><b>¿QUIERES REVISAR TU ESTATUS DEL SAT SIN COSTO?</b></font><br/><br/>"
+            "<font size=8 color='#eff6ff'>"
             "Solicita tu diagnóstico fiscal gratuito con nuestro equipo en Manzanillo.<br/>"
-            "📍 <b>Ubicación:</b> Manzanillo, Colima | 📱 <b>WhatsApp:</b> +52 (314) 170-7265<br/>"
+            "📍 <b>Ubicación:</b> Manzanillo, Colima | 📱 <b>WhatsApp:</b> +52 (314) 000-0000<br/>"
             "🌐 <b>Página Web:</b> Asesores Contables Sánchez"
             "</font>",
-            ParagraphStyle('CtaStyle', parent=styles['Normal'], alignment=1, leading=13)
+            ParagraphStyle('CtaStyle', parent=styles['Normal'], alignment=1, leading=12)
         )]
     ]
     cta_table = Table(cta_box, colWidths=[540])
     cta_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), c_green_emerald),
-        ('BORDER', (0,0), (-1,-1), 1.5, c_navy),
-        ('PADDING', (0,0), (-1,-1), 10),
+        ('BACKGROUND', (0,0), (-1,-1), c_blue_bright),
+        ('BORDER', (0,0), (-1,-1), 1.5, c_green_dark),
+        ('PADDING', (0,0), (-1,-1), 8),
         ('ALIGN', (0,0), (-1,-1), 'CENTER'),
     ]))
     story.append(cta_table)
 
     doc.build(story)
-    print("PDF profesional, juvenil e integrado generado con éxito: Guia_SAT_2026_Asesores_Contables_Sanchez.pdf")
+    print("PDF generado con éxito: Guia_SAT_2026_Asesores_Contables_Sanchez.pdf")
 
 if __name__ == "__main__":
-    crear_pdf_juvenil_profesional()
+    crear_pdf_completo()
